@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cam Spa Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=B612+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Play:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            color: #333;
+            font-family: "Play", sans-serif;
+        }
+
+        .container {
+            max-width: 100%;
+            min-height: 100vh;
+            margin: 0 auto;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-right {
+            position: fixed;
+            bottom: 0;
+            right: -150px;
+            background: url('./bottom-right.png');
+            background-size: cover;
+            background-position: top left;
+            background-repeat: no-repeat;
+            width: 400px;
+            height: 350px;
+        }
+
+        .bottom-right-overlay {
+            position: fixed;
+            bottom: -200px;
+            right: -200px;
+            width: 100%;
+            height: 100%;
+            background: url('./bottom-right-overlay.png');
+            background-size: cover;
+            background-position: top left;
+            background-repeat: no-repeat;
+            width: 350px;
+            height: 350px;
+        }
+
+        .bottom-left {
+            position: fixed;
+            bottom: 100px;
+            left: -150px;
+            background: url('./bottom-left.png');
+            background-size: cover;
+            background-position: top left;
+            background-repeat: no-repeat;
+            width: 300px;
+            height: 300px;
+        }
+
+        .bottom-left-overlay {
+            position: fixed;
+            bottom: -250px;
+            left: -100px;
+            width: 450px;
+            height: 450px;
+            background: url('./tree.png');
+            background-size: cover;
+            background-position: top left;
+            background-repeat: no-repeat;
+        }
+
+        .top-left {
+            position: fixed;
+            top: -50px;
+            left: -50px;
+            width: 300px;
+            height: 300px;
+            background: url('./leaf.png');
+            background-size: cover;
+            background-position: top left;
+            background-repeat: no-repeat;
+        }
+
+        .top-right {
+            position: fixed;
+            top: -135px;
+            right: -290px;
+            width: 450px;
+            height: 450px;
+            background: url('./tree.png');
+            background-size: cover;
+            background-position: top left;
+            background-repeat: no-repeat;
+        }
+
+        .top-right-overlay {
+            position: fixed;
+            top: -100px;
+            right: -230px;
+            width: 450px;
+            height: 450px;
+            background: url('./bottom-left.png');
+            background-size: cover;
+            background-position: top left;
+            background-repeat: no-repeat;
+            transform: rotate(160deg);
+        }
+
+        header {
+            padding-top: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 120px;
+            height: 130px;
+            margin: 0 auto;
+            background-image: url('./logo.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+        }
+
+        .slogan {
+            color: #c0a080;
+            font-family: "B612 Mono", monospace;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .menu-container {
+            width: 70%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .menu-left {
+            flex: 0 0 65%;
+        }
+
+        .menu-right {
+            flex: 0 0 30%;
+        }
+
+        .menu-section {
+            margin-bottom: 30px;
+        }
+
+        .waxing-nail {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .waxing,
+        .nail {
+            flex: 0 0 48%;
+        }
+
+        h3 {
+            color: #006400;
+            border-bottom: 1px solid #000;
+            line-height: 2rem;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .item-name {
+            flex: 1;
+        }
+
+        .item-info {
+            text-align: right;
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+        }
+
+        .item-info .grid-item {
+            min-width: 110px;
+            align-items: right;
+            justify-content: right;
+            margin-right: 15px;
+        }
+
+        .item-info .grid-item:last-child {
+            margin-right: 0;
+        }
+
+        .item-duration {
+            color: #888;
+            margin-right: 5px;
+        }
+
+        .item-price {
+            font-weight: bold;
+            color: #006400;
+        }
+
+        .packages {
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .package {
+            margin-bottom: 20px;
+        }
+
+        .package-title {
+            color: #006400;
+            margin-top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid #000;
+            line-height: 2.3rem;
+        }
+
+        .package-price {
+            font-size: 17px;
+            color: #006400;
+        }
+
+        .package-duration {
+            font-size: 17px;
+            font-weight: normal;
+            color: #888;
+        }
+
+        .thank-you {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .thank-you div.thanks {
+            position: relative;
+            font-size: 1.5rem;
+            color: #006400;
+        }
+
+
+        .qr-codes {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .qr-code {
+            width: 100px;
+            height: 100px;
+            background-color: #ddd;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+        }
+
+
+
+        @media (max-width: 768px) {
+            .menu-container {
+                flex-direction: column;
+            }
+
+            .menu-left,
+            .menu-right {
+                flex: 0 0 100%;
+            }
+
+            .waxing-nail {
+                flex-direction: column;
+            }
+
+            .waxing,
+            .nail {
+                flex: 0 0 100%;
+            }
+
+            .menu-item {
+                flex-direction: column;
+            }
+
+            .item-info {
+                text-align: right;
+            }
+
+            .packages {
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="bottom-right"></div>
+        <div class="bottom-right-overlay"></div>
+        <div class="bottom-left"></div>
+        <div class="bottom-left-overlay"></div>
+        <div class="top-left"></div>
+        <div class="top-right-overlay"></div>
+        <div class="top-right"></div>
+        <header>
+            <div class="logo"></div>
+            <p class="slogan">"We use homemade coconut oil for every massage treatment"</p>
+        </header>
+
+        <div class="menu-container">
+            <div class="menu-left">
+                <section class="menu-section">
+                    <h3>MASSAGE</h3>
+                    <div class="menu-item">
+                        <span class="item-name">Cam Massage (full body massage)</span>
+                        <span class="item-info">
+                            <span class="item-duration">(120')</span>
+                            <span class="item-price">780,000</span>
+                        </span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">(Thai Style Massage, Coconut Oil Massage & Hot Stone Massage)</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Four hands Massage</span>
+                        <span class="item-info">
+                            <div class="grid-item">
+                                <span class="item-duration">(60')</span>
+                                <span class="item-price">670,000</span>
+                            </div>
+                            <div class="grid-item">
+                                <span class="item-duration">(90')</span>
+                                <span class="item-price">870,000</span>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Vietnam Massage</span>
+                        <span class="item-info">
+                            <div class="grid-item">
+                                <span class="item-duration">(60')</span>
+                                <span class="item-price">370,000</span>
+                            </div>
+                            <div class="grid-item">
+                                <span class="item-duration">(90')</span>
+                                <span class="item-price">520,000</span>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Thai Massage</span>
+                        <span class="item-info">
+                            <div class="grid-item">
+                                <span class="item-duration">(60')</span>
+                                <span class="item-price">490,000</span>
+                            </div>
+                            <div class="grid-item">
+                                <span class="item-duration">(90')</span>
+                                <span class="item-price">670,000</span>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Thai Oil Massage</span>
+                        <span class="item-info">
+                            <div class="grid-item">
+                                <span class="item-duration">(60')</span>
+                                <span class="item-price">420,000</span>
+                            </div>
+                            <div class="grid-item">
+                                <span class="item-duration">(90')</span>
+                                <span class="item-price">570,000</span>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Hot Stone Massage</span>
+                        <span class="item-info">
+                            <div class="grid-item">
+                                <span class="item-duration">(90')</span>
+                                <span class="item-price">540,000</span>
+                            </div>
+                            <div class="grid-item">
+                                <span class="item-duration">(120')</span>
+                                <span class="item-price">720,000</span>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Back/ Neck/ Shoulder</span>
+                        <span class="item-info">
+                            <div class="grid-item">
+                                <span class="item-duration">(60')</span>
+                                <span class="item-price">400,000</span>
+                            </div>
+                            <div class="grid-item">
+                                <span class="item-duration">(90')</span>
+                                <span class="item-price">550,000</span>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Foot Massage(Foot +leg)</span>
+                        <span class="item-info">
+                            <div class="grid-item">
+                                <span class="item-duration">(30')</span>
+                                <span class="item-price">190,000</span>
+                            </div>
+                            <div class="grid-item">
+                                <span class="item-duration">(60')</span>
+                                <span class="item-price">350,000</span>
+                            </div>
+                            <div class="grid-item">
+                                <span class="item-duration">(90')</span>
+                                <span class="item-price">470,000</span>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Body Scrub With massage</span>
+                        <span class="item-info">
+                            <span class="item-duration">(40')</span>
+                            <span class="item-price">370,000</span>
+                        </span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Child Massage</span>
+                        <span class="item-info">
+                            <div class="grid-item">
+                                <span class="item-duration">(60')</span>
+                                <span class="item-price">270,000</span>
+                            </div>
+                            <div class="grid-item">
+                                <span class="item-duration">(90')</span>
+                                <span class="item-price">370,000</span>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">(Soft relaxing, under 10 year old)</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Facial Massage</span>
+                        <span class="item-info">
+                            <span class="item-duration">(40')</span>
+                            <span class="item-price">300,000</span>
+                        </span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Shampoo, Condition & Dry</span>
+                        <span class="item-info">
+                            <span class="item-duration">(30')</span>
+                            <span class="item-price">150,000</span>
+                        </span>
+                    </div>
+                </section>
+
+                <div class="waxing-nail">
+                    <section class="menu-section waxing">
+                        <h3>WAXING</h3>
+                        <div class="menu-item">
+                            <span class="item-name">Full Leg</span>
+                            <span class="item-price">400,000</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-name">Full Arm</span>
+                            <span class="item-price">300,000</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-name">Back</span>
+                            <span class="item-price">300,000</span>
+                        </div>
+                    </section>
+
+                    <section class="menu-section nail">
+                        <h3>NAIL</h3>
+                        <div class="menu-item">
+                            <span class="item-name">Foot Scrubs</span>
+                            <span class="item-price">250,000</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-name">Maricure/Pericure</span>
+                            <span class="item-price">100,000</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-name">Remove fake nails</span>
+                            <span class="item-price">50,000 - 100,000</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-name">Nail Color</span>
+                            <span class="item-price">180,000</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-name">Gel Nail</span>
+                            <span class="item-price">250,000</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-name">Nails Design</span>
+                            <span class="item-price">400,000-500,000</span>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="menu-right">
+                <section class="packages">
+                    <div class="package">
+                        <h3 class="package-title">
+                            <span>PACKAGES 1</span>
+                            <span>
+                                <span class="package-duration">(105')</span>
+                                <span class="package-price">650,000</span>
+                            </span>
+                        </h3>
+                        <p>Body Scrub</p>
+                        <p>Body Massage</p>
+                    </div>
+                    <div class="package">
+                        <h3 class="package-title">
+                            <span>PACKAGES 2</span>
+                            <span>
+                                <span class="package-duration">(120')</span>
+                                <span class="package-price">700,000</span>
+                            </span>
+                        </h3>
+                        <p>Body Massage</p>
+                        <p>Facial treatment</p>
+                    </div>
+                    <div class="package">
+                        <h3 class="package-title">
+                            <span>PACKAGES 3</span>
+                            <span>
+                                <span class="package-duration">(150')</span>
+                                <span class="package-price">990,000</span>
+                            </span>
+                        </h3>
+                        <p>Body scrub</p>
+                        <p>Cam Massage</p>
+                    </div>
+                </section>
+                <section class="packages">
+                    <div class="thank-you">
+                        <div class="review">Please review us on Google</div>
+                        <div class="thanks">Thank you so much!</div>
+                    </div>
+                    <div class="qr-codes">
+                        <div class="qr-code">
+                            <img src="./qr-googlemaps.png" alt="Google Maps">
+                            <span>Google Maps</span>
+                        </div>
+                        <div class="qr-code">
+                            <img src="./qr-whatsapp.png" alt="WhatsApp">
+                            <span>WhatsApp</span>
+                        </div>
+                        <div class="qr-code">
+                            <img src="./qr-kakaotalk.png" alt="Kakaotalk">
+                            <span>Kakaotalk</span>
+                        </div>
+                    </div>
+                </section>
+                </section>
+            </div>
+        </div>
+
+    </div>
+</body>
