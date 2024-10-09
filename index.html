@@ -277,8 +277,58 @@
 
 
         @media (max-width: 768px) {
+            .bottom-right {
+                width: 250px;
+                height: 200px;
+                right: -110px;
+                bottom: 0;
+            }
+
+            .bottom-right-overlay {
+                width: 250px;
+                height: 250px;
+                bottom: -180px;
+                right: -130px;
+            }
+
+            .bottom-left {
+                bottom: 20px;
+                left: -135px;
+                width: 200px;
+                height: 200px;
+            }
+
+            .bottom-left-overlay {
+                bottom: -160px;
+                left: -100px;
+                width: 280px;
+                height: 280px;
+            }
+
+            .top-left {
+                top: -30px;
+                left: -50px;
+                width: 150px;
+                height: 150px;
+            }
+
+            .top-right {
+                top: -105px;
+                right: -210px;
+                width: 320px;
+                height: 350px;
+            }
+
+            .top-right-overlay {
+                top: -100px;
+                right: -200px;
+                width: 300px;
+                height: 350px;
+            }
+
             .menu-container {
                 flex-direction: column;
+                width: 90%;
             }
 
             .menu-left,
@@ -297,14 +347,42 @@
 
             .menu-item {
                 flex-direction: column;
+                margin-bottom: 30px;
             }
 
             .item-info {
-                text-align: right;
+                text-align: left;
+                font-size: 13px;
+            }
+
+            .item-name {
+                font-size: 15px;
+                margin-bottom: 5px;
+            }
+
+            .item-info .grid-item {
+                min-width: 92px;
+                margin-right: 10px;
+            }
+
+            .waxing, .nail {
+                padding: 0;
+                margin-bottom: 0;
+            }
+
+            .waxing .menu-item, .nail .menu-item {
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 10px;
             }
 
             .packages {
+                padding: 0;
                 margin-top: 30px;
+            }
+
+            .packages:last-child {
+                margin-bottom: 300px;
             }
         }
     </style>
@@ -514,7 +592,7 @@
                         </div>
                         <div class="menu-item">
                             <span class="item-name">Nails Design</span>
-                            <span class="item-price">400,000-500,000</span>
+                            <span class="item-price">400,000 - 500,000</span>
                         </div>
                     </section>
                 </div>
