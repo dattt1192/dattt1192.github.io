@@ -482,6 +482,67 @@
         .thanks {
             margin-top: 30px;
         }
+
+        @media (max-width: 768px) {
+            .bb-border {
+                padding: 15px;
+                display: flex;
+                flex-direction: column;
+                /* height: fit-content; */
+            }
+
+            .menu-section.main .menu-item {
+                margin-bottom: 30px !important;
+            }
+
+            header {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .slogan {
+                font-size: 14px !important;
+                border-left: none !important;
+                text-align: center;
+                margin-left: -30px;
+            }
+
+            .packages {
+                width: 100% !important;
+            }
+
+
+            .package div.menu-item,
+            .menu-section.waxing .menu-item,
+            .menu-section.nail .menu-item {
+                margin-bottom: 3px !important;
+            }
+
+            .packages:last-child {
+                margin-bottom: 3px !important;
+                width: calc(100% - 30px) !important;
+            }
+
+            .package div.menu-item:nth-child(4) {
+                display: none;
+            }
+
+            .qr-codes {
+                display: flex;
+                justify-content: space-evenly;
+            }
+
+            .qr-code {
+                height: 100px;
+                text-align: center;
+                font-size: 10px !important;
+            }
+
+            .qr-code span {
+                font-size: 13px !important;
+            }
+
+        }
     </style>
 </head>
 
@@ -499,7 +560,7 @@
 
         <div class="menu-container">
             <div class="menu-left">
-                <section class="menu-section bb-border" style="
+                <section class="menu-section main bb-border" style="
     margin-bottom: 20px;
 ">
                     <header>
