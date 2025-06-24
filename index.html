@@ -543,6 +543,30 @@
             }
 
         }
+
+        .separate-menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .separate-menu .menu-item {
+            flex: 1;
+        }
+
+        .separate-menu .menu-item:first-child {
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .separate-menu {
+                display: block;
+            }
+
+            .separate-menu .menu-item {
+                margin-right: 0 !important;
+            }
+        }
     </style>
 </head>
 
@@ -769,14 +793,29 @@
 ">
                         <section class="menu-section waxing">
                             <h3 class="package-title">WAXING</h3>
-                            <div class="menu-item">
-                                <span class="item-name">Full Leg</span>
-                                <span class="item-price">600,000</span>
+                            <div class="separate-menu">
+                                <div class="menu-item">
+                                    <span class="item-name">Full Leg</span>
+                                    <span class="item-price">600,000</span>
+                                </div>
+                                <div class="menu-item">
+                                    <span class="item-name">Half Leg</span>
+                                    <span class="item-price">350,000</span>
+                                </div>
                             </div>
-                            <div class="menu-item">
-                                <span class="item-name">Full Arm</span>
-                                <span class="item-price">400,000</span>
+
+                            <div class="separate-menu">
+                                <div class="menu-item">
+                                    <span class="item-name">Full Arm</span>
+                                    <span class="item-price">400,000</span>
+                                </div>
+                                <div class="menu-item">
+                                    <span class="item-name">Half Arm</span>
+                                    <span class="item-price">250,000</span>
+                                </div>
                             </div>
+
+
                             <div class="menu-item">
                                 <span class="item-name">Back</span>
                                 <span class="item-price">500,000</span>
