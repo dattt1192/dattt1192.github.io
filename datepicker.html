@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery UI Datepicker - Vietnamese Style</title>
+    
+    <!-- jQuery UI CSS and JS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/ui-lightness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .datepicker-container {
+            max-width: 350px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .language-toggle {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .lang-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn.active {
+            background: #007bff;
+            color: white;
+        }
+        
+        .lang-btn:hover:not(.active) {
+            background: #e9ecef;
+        }
+        
+        /* Custom jQuery UI Datepicker Styles */
+        .ui-datepicker {
+            width: 100% !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        
+        .ui-datepicker .ui-datepicker-header {
+            background: white !important;
+            border: none !important;
+            border-bottom: 1px solid #e9ecef !important;
+            padding: 15px !important;
+            position: relative;
+        }
+        
+        .ui-datepicker .ui-datepicker-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            margin: 0 40px;
+        }
+        
+        .ui-datepicker .ui-datepicker-prev,
+        .ui-datepicker .ui-datepicker-next {
+            position: absolute !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            width: 30px !important;
+            height: 30px !important;
+            border-radius: 50% !important;
+            background: #f8f9fa !important;
+            border: 1px solid #dee2e6 !important;
+            cursor: pointer !important;
+        }
+        
+        .ui-datepicker .ui-datepicker-prev {
+            left: 15px !important;
+        }
+        
+        .ui-datepicker .ui-datepicker-next {
+            right: 15px !important;
+        }
+        
+        .ui-datepicker .ui-datepicker-prev:hover,
+        .ui-datepicker .ui-datepicker-next:hover {
+            background: #e9ecef !important;
+        }
+        
+        .ui-datepicker .ui-datepicker-prev span,
+        .ui-datepicker .ui-datepicker-next span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .ui-datepicker .ui-datepicker-prev span:before {
+            content: "‹";
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .ui-datepicker .ui-datepicker-next span:before {
+            content: "›";
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .ui-datepicker table {
+            width: 100% !important;
+            border-collapse: collapse !important;
+            margin: 0 !important;
+        }
+        
+        .ui-datepicker thead th {
+            background: white !important;
+            border: none !important;
+            padding: 12px 8px !important;
+            font-weight: 500 !important;
+            color: #666 !important;
+            text-align: center !important;
+            font-size: 13px !important;
+        }
+        
+        .ui-datepicker tbody td {
+            border: none !important;
+            padding: 2px !important;
+            text-align: center !important;
+        }
+        
+        .ui-datepicker tbody td a {
+            display: block !important;
+            width: 36px !important;
+            height: 36px !important;
+            line-height: 36px !important;
+            text-align: center !important;
+            border-radius: 50% !important;
+            text-decoration: none !important;
+            font-size: 14px !important;
+            color: #333 !important;
+            margin: 0 auto !important;
+            transition: all 0.2s !important;
+        }
+        
+        .ui-datepicker tbody td a:hover {
+            background: #f8f9fa !important;
+            color: #007bff !important;
+        }
+        
+        .ui-datepicker tbody td.ui-datepicker-today a {
+            background: #007bff !important;
+            color: white !important;
+        }
+        
+        .ui-datepicker tbody td.ui-datepicker-current-day a {
+            background: #007bff !important;
+            color: white !important;
+        }
+        
+        /* Special dates styling */
+        .ui-datepicker tbody td.special-date a {
+            color: #dc3545 !important;
+            font-weight: bold !important;
+        }
+        
+        .ui-datepicker tbody td.weekend a {
+            color: #dc3545 !important;
+        }
+        
+        .ui-datepicker tbody td.ui-datepicker-other-month a {
+            color: #ccc !important;
+        }
+        
+        .ui-datepicker tbody td.ui-datepicker-unselectable {
+            opacity: 0.3;
+        }
+        
+        .input-container {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .date-input {
+            width: 200px;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 16px;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        .date-input:focus {
+            border-color: #007bff;
+        }
+        
+        .inline-datepicker {
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="datepicker-container">
+        <div class="language-toggle">
+            <button class="lang-btn" id="lang-vi">西语</button>
+            <button class="lang-btn active" id="lang-en">和语</button>
+        </div>
+        
+        <div class="inline-datepicker">
+            <div id="datepicker"></div>
+        </div>
+    </div>
+    
+    <div class="input-container">
+        <input type="text" id="date-input" class="date-input" placeholder="Chọn ngày..." readonly>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Vietnamese localization
+            $.datepicker.regional['vi'] = {
+                closeText: 'Đóng',
+                prevText: '&#x3C;Trước',
+                nextText: 'Tiếp&#x3E;',
+                currentText: 'Hôm nay',
+                monthNames: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+                    'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+                monthNamesShort: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6',
+                    'T7', 'T8', 'T9', 'T10', 'T11', 'T12'],
+                dayNames: ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'],
+                dayNamesShort: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+                dayNamesMin: ['日', '月', '火', '水', '木', '金', '土'],
+                weekHeader: 'Tu',
+                dateFormat: 'dd/mm/yy',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: ' 年'
+            };
+            
+            // Set Vietnamese as default
+            $.datepicker.setDefaults($.datepicker.regional['vi']);
+            
+            // Initialize inline datepicker
+            $('#datepicker').datepicker({
+                inline: true,
+                showOtherMonths: true,
+                selectOtherMonths: true,
+                changeMonth: false,
+                changeYear: false,
+                showButtonPanel: false,
+                beforeShowDay: function(date) {
+                    var day = date.getDay();
+                    var classes = '';
+                    
+                    // Weekend styling
+                    if (day === 0 || day === 6) {
+                        classes += ' weekend';
+                    }
+                    
+                    // Special dates (example: 3rd, 10th, 17th, 24th, 31st)
+                    var dayOfMonth = date.getDate();
+                    if ([3, 10, 17, 24, 31].indexOf(dayOfMonth) !== -1) {
+                        classes += ' special-date';
+                    }
+                    
+                    return [true, classes];
+                },
+                onSelect: function(dateText, inst) {
+                    $('#date-input').val(dateText);
+                }
+            });
+            
+            // Input datepicker
+            $('#date-input').datepicker({
+                showOtherMonths: true,
+                selectOtherMonths: true,
+                changeMonth: true,
+                changeYear: true,
+                onSelect: function(dateText, inst) {
+                    $('#datepicker').datepicker('setDate', dateText);
+                }
+            });
+            
+            // Language toggle functionality
+            $('#lang-vi').click(function() {
+                $('.lang-btn').removeClass('active');
+                $(this).addClass('active');
+                
+                // Update day names to Vietnamese
+                $.datepicker.regional['vi'].dayNamesMin = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+                $.datepicker.setDefaults($.datepicker.regional['vi']);
+                
+                $('#datepicker').datepicker('destroy');
+                $('#datepicker').datepicker({
+                    inline: true,
+                    showOtherMonths: true,
+                    selectOtherMonths: true,
+                    changeMonth: false,
+                    changeYear: false,
+                    showButtonPanel: false,
+                    beforeShowDay: function(date) {
+                        var day = date.getDay();
+                        var classes = '';
+                        
+                        if (day === 0 || day === 6) {
+                            classes += ' weekend';
+                        }
+                        
+                        var dayOfMonth = date.getDate();
+                        if ([3, 10, 17, 24, 31].indexOf(dayOfMonth) !== -1) {
+                            classes += ' special-date';
+                        }
+                        
+                        return [true, classes];
+                    },
+                    onSelect: function(dateText, inst) {
+                        $('#date-input').val(dateText);
+                    }
+                });
+            });
+            
+            $('#lang-en').click(function() {
+                $('.lang-btn').removeClass('active');
+                $(this).addClass('active');
+                
+                // Update day names to match the image
+                $.datepicker.regional['vi'].dayNamesMin = ['日', '月', '火', '水', '木', '金', '土'];
+                $.datepicker.setDefaults($.datepicker.regional['vi']);
+                
+                $('#datepicker').datepicker('destroy');
+                $('#datepicker').datepicker({
+                    inline: true,
+                    showOtherMonths: true,
+                    selectOtherMonths: true,
+                    changeMonth: false,
+                    changeYear: false,
+                    showButtonPanel: false,
+                    beforeShowDay: function(date) {
+                        var day = date.getDay();
+                        var classes = '';
+                        
+                        if (day === 0 || day === 6) {
+                            classes += ' weekend';
+                        }
+                        
+                        var dayOfMonth = date.getDate();
+                        if ([3, 10, 17, 24, 31].indexOf(dayOfMonth) !== -1) {
+                            classes += ' special-date';
+                        }
+                        
+                        return [true, classes];
+                    },
+                    onSelect: function(dateText, inst) {
+                        $('#date-input').val(dateText);
+                    }
+                });
+            });
+            
+            // Set today's date as selected
+            var today = new Date();
+            $('#datepicker').datepicker('setDate', today);
+            $('#date-input').val($.datepicker.formatDate('dd/mm/yy', today));
+        });
+    </script>
+</body>
+</html>
