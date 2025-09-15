@@ -401,20 +401,21 @@
             .thanks {
                 margin-top: 30px;
             }
-            .menu-item .item-name {
-            position: relative;
-            padding-left: 30px; /* chừa khoảng trống cho icon */
-            font-weight: bold;
-            }
+            .must-try {
+                position: relative;
+                padding-left: 28px; /* chừa khoảng trống cho icon */
+                }
 
-            .menu-item .item-name::before {
-            content: "🔥 Must Try"; /* có thể thay bằng hình ảnh hoặc text */
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-size: 12px;
-            color: #e63946; /* màu nổi bật */
-            font-weight: bold;
+            .must-try::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 20px;
+                height: 20px;
+                background: url("./logo.png") no-repeat center center;
+                background-size: contain;
             }
             @media (max-width: 768px) {
                 .bb-border {
@@ -496,14 +497,14 @@
                         </header>
                         <h3>MASSAGE</h3>
                         <div class="menu-item">
-                            <span class="item-name">Cam Massage (Thai Style Massage, Coconut Oil Massage &amp; Hot Stone Massage)</span>
+                            <span class="item-name must-try">Cam Massage (Thai Style Massage, Coconut Oil Massage &amp; Hot Stone Massage)</span>
                             <span class="item-info">
                                 <span class="item-duration">(120')</span>
                                 <span class="item-price">870,000</span>
                             </span>
                         </div>
                         <div class="menu-item">
-                            <span class="item-name">Four hands Massage</span>
+                            <span class="item-name must-try">Four hands Massage</span>
                             <span class="item-info">
                                 <div class="grid-item">
                                     <span class="item-duration">(60')</span>
@@ -598,7 +599,7 @@
                             </span>
                         </div>
                         <div class="menu-item">
-                            <span class="item-name">Body Scrub With massage</span>
+                            <span class="item-name must-try">Body Scrub With massage</span>
                             <span class="item-info">
                                 <span class="item-duration">(40')</span>
                                 <span class="item-price">370,000</span>
@@ -618,7 +619,7 @@
                             </span>
                         </div>
                         <div class="menu-item">
-                            <span class="item-name">Facial Massage</span>
+                            <span class="item-name must-try">Facial Massage</span>
                             <span class="item-info">
                                 <span class="item-duration">(50')</span>
                                 <span class="item-price">350,000</span>
