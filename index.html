@@ -401,6 +401,21 @@
             .thanks {
                 margin-top: 30px;
             }
+            .menu-item .item-name {
+            position: relative;
+            padding-left: 30px; /* chừa khoảng trống cho icon */
+            font-weight: bold;
+            }
+
+            .menu-item .item-name::before {
+            content: "🔥 Must Try"; /* có thể thay bằng hình ảnh hoặc text */
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 12px;
+            color: #e63946; /* màu nổi bật */
+            font-weight: bold;
+            }
             @media (max-width: 768px) {
                 .bb-border {
                     padding: 15px;
